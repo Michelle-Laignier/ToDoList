@@ -12,6 +12,11 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 22,
   },
 
+  buttonPressed: {
+    backgroundColor: colorsProduct.blue,
+    opacity: 1,
+  },
+
   buttonText: {
     color: colorsBg.gray100,
     fontSize: 24,

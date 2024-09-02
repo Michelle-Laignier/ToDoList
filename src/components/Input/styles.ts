@@ -16,4 +16,9 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     padding: 20,
   },
+
+  inputFocused: {
+    borderColor: colorsProduct.purpleDark,
+    borderWidth: 1.5,
+  },
 })
