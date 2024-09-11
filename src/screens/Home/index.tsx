@@ -3,8 +3,13 @@ import { styles } from "./styles"
 import { Input } from "../../components/Input"
 import { Button } from "../../components/Button"
 import { Task } from "../../components/Task"
+import { useState } from "react"
 
 export function Home() {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const toggleCheck = () => setIsChecked((prevState) => !prevState)
+
   return(
     <View style={styles.container}>
 
@@ -42,19 +47,22 @@ export function Home() {
         <Task 
           taskName="Exemplo de tarefa 1" 
           onRemove={() => console.log("remove1")}
-          checked={() => console.log("check1")}
+          checked={isChecked}
+          onToggleCheck={toggleCheck}
         />
 
-        <Task 
+        <Task
           taskName="Exemplo de tarefa 2" 
           onRemove={() => console.log("remove1")}
-          checked={() => console.log("check1")}
+          checked={isChecked}
+          onToggleCheck={toggleCheck}
         />
 
         <Task 
           taskName="Exemplo de tarefa 3" 
           onRemove={() => console.log("remove1")}
-          checked={() => console.log("check1")}
+          checked={isChecked}
+          onToggleCheck={toggleCheck}
         />
       </View>
       
