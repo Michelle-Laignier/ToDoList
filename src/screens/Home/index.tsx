@@ -1,4 +1,4 @@
-import { Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Alert, FlatList, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { styles } from "./styles"
 import { Task } from "../../components/Task"
 import { useState } from "react"
@@ -7,8 +7,24 @@ export function Home() {
   const [isChecked, setIsChecked] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
   const [isPressed, setIsPressed] = useState(false)
+  const [inputTextContent, setInputTextContent] = useState("")
+  const [items, setItems] = useState<string[]>([])
 
   const toggleCheck = () => setIsChecked((prevState) => !prevState)
+
+  function handleAddItemToList() {
+    if(inputTextContent === "") {
+      return
+    }
+    
+    if(items.includes(inputTextContent)) {
+      Alert.alert(`"${inputTextContent}" já está na lista`)
+      return setInputTextContent("")
+    }
+
+    setItems(prevState => [...prevState, inputTextContent])
+    setInputTextContent("")
+  }
 
   return(
     <View style={styles.container}>
@@ -25,12 +41,15 @@ export function Home() {
           onBlur={() => setIsFocused(false)}
           placeholder="Adicione uma nova tarefa"
           placeholderTextColor="#808080"
+          value={inputTextContent}
+          onChangeText={setInputTextContent}
         />
 
         <TouchableOpacity
           style={[styles.button, isPressed && styles.buttonPressed]}
           onPressIn={() => setIsPressed(true)}
           onPressOut={() => setIsPressed(false)}
+          onPress={handleAddItemToList}
           >
             <Text style={styles.buttonText}>
               +
@@ -59,31 +78,29 @@ export function Home() {
           </View>
         </View>
         
-        <Task 
-          taskName="Exemplo de tarefa 1" 
-          onRemove={() => console.log("remove1")}
-          checked={isChecked}
-          onToggleCheck={toggleCheck}
-          onPress={() => console.log()}
+        <FlatList 
+          data={items}
+          keyExtractor={item => item}
+          renderItem={({ item }) => (
+            <Task 
+              key={item}
+              taskName={item}
+              onRemove={() => console.log("remove1")}
+              checked={isChecked}
+              onToggleCheck={toggleCheck}
+              onPress={() => console.log()}
+            />
+          )}
+          scrollEnabled
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={() => (
+            <Text style={styles.emptyListText}>
+              Lista vazia
+            </Text>
+          )}
         />
 
-        <Task
-          taskName="Exemplo de tarefa 2" 
-          onRemove={() => console.log("remove1")}
-          checked={isChecked}
-          onToggleCheck={toggleCheck}
-          onPress={() => console.log()}
-        />
-
-        <Task 
-          taskName="Exemplo de tarefa 3" 
-          onRemove={() => console.log("remove1")}
-          checked={isChecked}
-          onToggleCheck={toggleCheck}
-          onPress={() => console.log()}
-        />
       </View>
-      
     </View>
   )
 }

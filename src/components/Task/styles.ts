@@ -19,14 +19,15 @@ export const styles = StyleSheet.create({
   },
 
   checkbox: {
-    width: "0%"
+    width: "0%",
   },
 
   text:{
     color: colorsBg.gray100,
     fontSize: 16,
     paddingVertical: 15,
-    maxWidth: "90%",
+    textAlign: "center",
+    maxWidth: "50%",
   },
 
   button: {

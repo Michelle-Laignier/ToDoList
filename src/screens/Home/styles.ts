@@ -41,6 +41,7 @@ export const styles = StyleSheet.create({
     color: colorsBg.gray100,
     fontSize: 16,
     padding: 20,
+    width: "80%",
   },
 
   inputFocused: {
@@ -71,7 +72,9 @@ export const styles = StyleSheet.create({
 
 
   // Tasks:
-  tasksDiv:{},
+  tasksDiv:{
+    flex: 1,
+  },
 
   tasksCreatedAndDoneDiv: {
     alignContent: "center",
@@ -124,5 +127,12 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingHorizontal: 15,
     paddingVertical: 5,
+  },
+
+  emptyListText: {
+    alignSelf: "center",
+    color: colorsBg.gray100,
+    fontSize: 21,
+    marginTop: 50,
   },
 })
