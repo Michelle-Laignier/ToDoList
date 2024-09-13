@@ -1,12 +1,12 @@
-import { Text, View } from "react-native"
+import { Text, TextInput, TouchableOpacity, View } from "react-native"
 import { styles } from "./styles"
-import { Input } from "../../components/Input"
-import { Button } from "../../components/Button"
 import { Task } from "../../components/Task"
 import { useState } from "react"
 
 export function Home() {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
+  const [isPressed, setIsPressed] = useState(false)
 
   const toggleCheck = () => setIsChecked((prevState) => !prevState)
 
@@ -19,8 +19,23 @@ export function Home() {
       </View>
 
       <View style={styles.addNewToDoDiv}>
-        <Input />
-        <Button />
+        <TextInput
+          style={[styles.input, isFocused && styles.inputFocused]}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          placeholder="Adicione uma nova tarefa"
+          placeholderTextColor="#808080"
+        />
+
+        <TouchableOpacity
+          style={[styles.button, isPressed && styles.buttonPressed]}
+          onPressIn={() => setIsPressed(true)}
+          onPressOut={() => setIsPressed(false)}
+          >
+            <Text style={styles.buttonText}>
+              +
+            </Text>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.tasksDiv}>
@@ -49,6 +64,7 @@ export function Home() {
           onRemove={() => console.log("remove1")}
           checked={isChecked}
           onToggleCheck={toggleCheck}
+          onPress={() => console.log()}
         />
 
         <Task
@@ -56,6 +72,7 @@ export function Home() {
           onRemove={() => console.log("remove1")}
           checked={isChecked}
           onToggleCheck={toggleCheck}
+          onPress={() => console.log()}
         />
 
         <Task 
@@ -63,6 +80,7 @@ export function Home() {
           onRemove={() => console.log("remove1")}
           checked={isChecked}
           onToggleCheck={toggleCheck}
+          onPress={() => console.log()}
         />
       </View>
       

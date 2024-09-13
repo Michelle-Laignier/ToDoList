@@ -18,10 +18,23 @@ export const styles = StyleSheet.create({
     paddingVertical: 1,
   },
 
+  checkbox: {
+    width: "0%"
+  },
+
   text:{
     color: colorsBg.gray100,
     fontSize: 16,
     paddingVertical: 15,
     maxWidth: "90%",
+  },
+
+  button: {
+    paddingVertical: 10,
+  },
+
+  img: {
+    height: 50,
+    width: 50,
   },
 })

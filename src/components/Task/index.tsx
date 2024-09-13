@@ -1,19 +1,27 @@
-import { View, Text } from "react-native"
+import { View, Text, TouchableOpacity, Image } from "react-native"
 import { styles } from "./styles"
-import { ButtonRemove } from "../ButtonRemove";
-import { Checkbox } from "../Checkbox";
+import BouncyCheckbox from "react-native-bouncy-checkbox"
 
 type TaskProps = {
   taskName: string,
   onRemove: () => void,
   checked: boolean,
+  onPress: () => void,
   onToggleCheck: () => void,
 }
 
 export function Task({ taskName, onRemove, checked, onToggleCheck }: TaskProps) {
   return(
     <View style={styles.container}>
-      <Checkbox checked={checked} onPress={onToggleCheck} />
+      <BouncyCheckbox
+        style={styles.checkbox}
+        fillColor="#5E60CE"
+        iconStyle={{ borderColor: "#4EA8DE" }}
+        innerIconStyle={{ borderWidth: 2 }}
+        onPress={onToggleCheck}
+
+        isChecked={checked}
+      />
 
       <Text
         style={
@@ -27,7 +35,12 @@ export function Task({ taskName, onRemove, checked, onToggleCheck }: TaskProps) 
         {taskName}
       </Text>
 
-      <ButtonRemove/>
+      <TouchableOpacity style={styles.button} >
+        <Image
+          style={styles.img}
+          source={require("../../../assets/trashCan.png")} 
+        />
+      </TouchableOpacity>
     </View>
   )
 }

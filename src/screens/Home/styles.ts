@@ -33,6 +33,41 @@ export const styles = StyleSheet.create({
     marginBottom: 50,
   },
 
+  input:{
+    backgroundColor: colorsBg.gray500,
+    borderColor: colorsBg.gray700,
+    borderRadius: 6,
+    borderWidth: 1,
+    color: colorsBg.gray100,
+    fontSize: 16,
+    padding: 20,
+  },
+
+  inputFocused: {
+    borderColor: colorsProduct.purpleDark,
+    borderWidth: 1.5,
+  },
+
+  button: {
+    backgroundColor: colorsProduct.blueDark,
+    borderRadius: 6,
+    borderColor: colorsBg.gray700,
+    borderWidth: 1,
+    color: colorsBg.gray100,
+    paddingVertical: 15,
+    paddingHorizontal: 22,
+  },
+
+  buttonPressed: {
+    backgroundColor: colorsProduct.blue,
+    opacity: 1,
+  },
+
+  buttonText: {
+    color: colorsBg.gray100,
+    fontSize: 24,
+  },
+
 
 
   // Tasks:
