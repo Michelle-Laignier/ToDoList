@@ -79,7 +79,7 @@ export function Home() {
               Criadas
             </Text>
             <Text style={styles.tasksCreatedNumber}>
-              5
+              {items.length}
             </Text>
           </View>
 
@@ -88,7 +88,7 @@ export function Home() {
               Concluídas
             </Text>
             <Text style={styles.tasksDoneNumber}>
-              2
+              0
             </Text>
           </View>
         </View>
