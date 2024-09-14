@@ -26,6 +26,21 @@ export function Home() {
     setInputTextContent("")
   }
 
+  function handleRemoveItem(task: string) {
+    Alert.alert(`Remover "${task}"?`, "",
+      [
+        {
+          text: "Sim",
+          onPress: () => setItems(prevState => prevState.filter(items => items !== task))
+        },
+        {
+          text: "Não",
+          style: "destructive",
+        }
+      ]
+    )
+  }
+
   return(
     <View style={styles.container}>
 
@@ -85,7 +100,7 @@ export function Home() {
             <Task 
               key={item}
               taskName={item}
-              onRemove={() => console.log("remove1")}
+              onRemove={() => handleRemoveItem(item)}
               checked={isChecked}
               onToggleCheck={toggleCheck}
               onPress={() => console.log()}

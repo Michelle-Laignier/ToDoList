@@ -20,7 +20,8 @@ export function Task({ taskName, onRemove, checked, onToggleCheck }: TaskProps) 
         innerIconStyle={{ borderWidth: 2 }}
         onPress={onToggleCheck}
 
-        isChecked={checked}
+        // with this active, when 1 item is selected, all of them get selected too:
+        //isChecked={checked}
       />
 
       <Text
@@ -35,7 +36,10 @@ export function Task({ taskName, onRemove, checked, onToggleCheck }: TaskProps) 
         {taskName}
       </Text>
 
-      <TouchableOpacity style={styles.button} >
+      <TouchableOpacity 
+        style={styles.button} 
+        onPress={onRemove}
+      >
         <Image
           style={styles.img}
           source={require("../../../assets/trashCan.png")} 

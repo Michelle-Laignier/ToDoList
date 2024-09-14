@@ -129,6 +129,16 @@ export const styles = StyleSheet.create({
     paddingVertical: 5,
   },
 
+  textChecked: {
+    color: colorsBg.gray300,
+    textDecorationLine: "line-through",
+  },
+
+  textNotChecked: {
+    color: colorsBg.gray100,
+    textDecorationLine: "none",
+  },
+
   emptyListText: {
     alignSelf: "center",
     color: colorsBg.gray100,
