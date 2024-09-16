@@ -4,13 +4,20 @@ import { Task } from "../../components/Task"
 import { useState } from "react"
 
 export function Home() {
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState<{ [key: string]: boolean }>({})
   const [isFocused, setIsFocused] = useState(false)
   const [isPressed, setIsPressed] = useState(false)
   const [inputTextContent, setInputTextContent] = useState("")
   const [items, setItems] = useState<string[]>([])
 
-  const toggleCheck = () => setIsChecked((prevState) => !prevState)
+  const completedTasks = Object.values(isChecked).filter(value => value).length
+
+  function handleToggleCheck(item: string) {
+    setIsChecked((prevState) => ({
+      ...prevState,
+      [item]: !prevState[item]
+    }))
+  }
 
   function handleAddItemToList() {
     if(inputTextContent === "") {
@@ -88,7 +95,7 @@ export function Home() {
               Concluídas
             </Text>
             <Text style={styles.tasksDoneNumber}>
-              0
+              {completedTasks}
             </Text>
           </View>
         </View>
@@ -101,8 +108,8 @@ export function Home() {
               key={item}
               taskName={item}
               onRemove={() => handleRemoveItem(item)}
-              checked={isChecked}
-              onToggleCheck={toggleCheck}
+              checked={isChecked[item] || false}
+              onToggleCheck={() => handleToggleCheck(item)}
               onPress={() => console.log()}
             />
           )}
