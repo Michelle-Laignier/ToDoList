@@ -38,7 +38,14 @@ export function Home() {
       [
         {
           text: "Sim",
-          onPress: () => setItems(prevState => prevState.filter(items => items !== task))
+          onPress: () => {
+            setItems(prevState => prevState.filter(items => items !== task))
+            setIsChecked(prevState => {
+              const newState = {...prevState}
+              delete newState[task]
+              return newState
+            }) // fixed: if a checked task is removed, it'll update the completedTasks number
+          }
         },
         {
           text: "Não",
